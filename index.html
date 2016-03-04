@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Andreas Åkre Solberg">
+
+	<title>UNINETT Kalender</title>
+
+	<link href="bower_components/uninett-theme/ico/favicon.png" rel="shortcut icon" />
+
+
+	<!-- Application: Javascript and CSS loaded from distribution build -->
+	<link href="dist/app.min.css" rel="stylesheet"/>
+	<script type="text/javascript">
+
+	</script> 
+
+	<script src="dist/app.min.js?v=2.2.5"></script>
+	<!--  o __ o __ o __ o __ o __ o __ o __ o __ o __ o __ o __ o __ o -->
+
+</head>
+
+<body>
+
+	<div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">	
+	</div>
+
+	<div class=" " style="">
+
+		<div id="debug" style="font-size: 70%"></div>
+
+		<div id="errorcontainer"></div>
+		
+
+	</div>
+
+
+
+
+
+<div id="allContent" class="container gutter panefreebusy">
+
+	<div id="mainOuterRow" class="row">
+
+		<div  id="groupselector" class="groupselector list-group col-sm-3"></div>
+		<div id="mainOuter" class="col-sm-9">
+
+			<ul id="mainNav" class="nav nav-pills" style="margin-bottom: 12px">
+				<li class="actPaneSelector" id="currentAvailability"><a href="#"><i class="fa fa-clock-o"></i> Nå</a></li>
+				<li class="actPaneSelector" id="freebusy"><a href="#"><i class="fa fa-calendar"></i> Planlegger</a></li>
+				<li class="actPaneSelector" id="vacation"><a href="#"><i class="fa fa-plane"></i> Ferieoversikt</a></li>
+				<li class="actPaneSelector" id="uds"><a href="#"><i class="fa fa-phone"></i> UDS</a></li>
+				<li class="actPaneSelector" id="contacts"><a  href="#"><i class="fa fa-book"></i> Kontakter</a></li>
+				<li class="actPaneSelector" id="errors"><a href="#"><i class="fa fa-warning"></i> Errors <span id="ec"></span></a></li>
+			</ul>
+
+
+
+			<div id="panecontainer"></div>
+
+
+<!--
+			<table class="table table-condensed" style="">
+				<thead class="mainheader" id="mainheader"></thead>
+				<tbody class="mainview" id="mainview"></tbody>
+			</table>
+-->
+
+
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+	
+</body>
+</html>

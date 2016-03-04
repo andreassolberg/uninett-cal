@@ -1,0 +1,303 @@
+@import url("../bower_components/bootstrap/dist/css/bootstrap.min.css");
+@import url("../bower_components/fontawesome/css/font-awesome.min.css");
+/*@import url("../bower_components/uninett-theme/css/uninett.css");*/
+
+
+
+body.stateLoggedIn  .showOnLoggedIn { display: block !important; }
+body.stateLoggedIn  .showOnLoggedOut { display: none; }
+
+body.stateLoggedOut .showOnLoggedIn { display: none ; }
+body.stateLoggedOut .showOnLoggedOut { display: block !important; }
+
+div.currentBox {
+	overflow: visible;
+}
+div.currentBox .cae {
+	font-size: 90%;
+	font-family: "Arial Narrow";
+}
+div.currentBox.free img{ 
+	border: 15px solid #70B163;
+}
+div.currentBox.free h3 span {
+	background-color: #70B163; border-radius: 5px; padding: 2px 4px;
+}
+div.currentBox.busy img{
+	border: 15px solid #C55449;
+}
+div.currentBox.busy h3 span {
+	background-color: #C55449; border-radius: 5px; padding: 2px 4px;
+}
+div.currentBox.near img{
+	border: 15px solid #F58946;
+}
+div.currentBox.near h3 span {
+	background-color: #F58946; border-radius: 5px; padding: 2px 4px;
+}
+div.currentBox.next img{
+	border: 15px solid #639C57;
+}
+div.currentBox.next h3 span {
+	background-color: #639C57; border-radius: 5px; padding: 2px 4px;
+}
+div.currentBox.currentBoxFocus {
+	height: auto;
+	min-height: 300px;
+	border: 3px solid #333;
+}
+div.currentBox.currentBoxFocus img {
+	/*max-width: 95%;*/
+/*	border: 3px solid #888;*/
+}
+
+div.currentBox .caname {
+	margin-top: -22px; 
+	/*background: rgba(0,0,0,0.60);*/
+	z-index: 1000;
+	/*color: #eee;*/
+	text-align: center;
+
+}
+
+
+
+
+
+/*	div.currentBox {
+		font-size: 110%;
+	}*/
+}
+
+div.currentBox.busy {
+/*	min-height: 80%;
+	max-height: 600px;*/
+	/*border: 1px solid green;*/
+}
+div.currentBox.near {
+	/*height: 325px;	*/
+}
+
+
+
+
+div.currentBox {
+	/*height: 250px;*/
+	overflow-y: hidden;
+	cursor: pointer;
+	font-size: 100%;
+/*	min-height: 300px;*/
+	/*min-height: 300px;*/
+/*	border: 0px;*/
+
+/*	-webkit-box-shadow: 4px 4px 8px -2px rgba(0,0,0,0.53);
+	-moz-box-shadow: 4px 4px 8px -2px rgba(0,0,0,0.53);
+	box-shadow: 4px 4px 8px -2px rgba(0,0,0,0.53);
+*/
+}
+
+.xevent {
+	text-align: center;
+}
+.timemrk {
+	/*float: right;*/
+	font-size: 96%;
+	background-color: #444;
+	color: white;
+	border-radius: 4px;
+	padding: 2px 5px !important;
+	margin: 0px 1px 0px 5px !important;
+}
+.timemrk span {
+
+}
+
+.mainview .col-sm-4 {
+	padding: 0px 3px;
+}
+
+img.profilephoto {
+	/*max-width: 200px;*/
+	max-width: 100%;
+}
+
+div.currentBox img {
+
+	/*border: 1px solid #333;*/
+/*	-webkit-box-shadow: 4px 4px 8px -2px rgba(0,0,0,0.53);
+	-moz-box-shadow: 4px 4px 8px -2px rgba(0,0,0,0.53);
+	box-shadow: 4px 4px 8px -2px rgba(0,0,0,0.53);*/
+}
+div.currentBox:hover img {
+	/*max-width: 90%;*/
+}
+div.currentBox p {
+	margin: 0px; padding: 0px;
+}
+div.currentBox p.eventTitle {
+	font-size: 130%;
+}
+div.currentBox .currentEventnow p.eventTitle {
+	font-weight: bold;
+	font-size: 150%;
+}
+
+body {
+	/*padding-top: 0px !important;*/
+		/*background-color: #eeebe8 !important;*/
+	/*padding-bottom: 5em;*/
+}
+#datebox {
+	margin-bottom: 1em;
+}
+
+.daytitle {
+	text-align: center;
+}
+
+#grpbtn {
+	margin-bottom: 1em;
+
+}
+
+#groupselector {
+	/*font-size: 90;*/
+}
+#groupselector  .list-group-item {
+	padding-top: 4px;
+	padding-bottom: 4px;
+	font-size: 90%;
+}
+#weekdisplay button {
+	margin: 0px 2px;
+}
+#weeknow .week {
+	font-size: 200%;
+	font-weight: bold;
+	display: inline !important;
+	padding: 25px;
+}
+#weeknow .days {
+	font-size: 120%;
+	margin-bottom: 1em;
+}
+
+.panevacation table {
+	background-color: #fff;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	/*z-index: 0;	*/
+}
+
+
+tbody#mainview td.a {
+	padding: 0px;
+	width: 8px;
+
+}
+tbody#mainview {
+	cursor: pointer; 	
+	
+}
+
+
+tbody#mainview td.a.odd {
+	/*border-right-width: 1px ! important;*/
+
+	border-right: 1px;
+}
+/* Avail means no appointsments registered */
+tbody#mainview td.a.Avail {
+	background-color: #090;
+	border-right-color: #070;
+}
+tbody#mainview td.a.Avail.Lunch {
+	background-color: #008700;
+	border-right-color: #040;
+}
+tbody#mainview td.a.Avail.Past {
+	background-color: #777;
+}
+
+/* Busy */
+tbody#mainview td.a.Busy {
+	background-color: #C84640;
+	border-right-color: #ad0b14;
+}
+tbody#mainview td.a.Busy.Past {
+	background-color: #644A45;
+}
+/* Tentative */
+tbody#mainview td.a.Tentative {
+	background-color: #E5BE4C;
+}
+tbody#mainview td.a.Tentative.Past {
+	background-color: #645531;
+}
+/* Tentative */
+tbody#mainview td.a.OOF {
+	background-color: #913D38;
+}
+tbody#mainview td.a.OOF.Past {
+	background-color: #545D64;
+}
+/* Free */
+tbody#mainview td.a.Free {
+	background-color: #2B72B7;
+}
+tbody#mainview td.a.Free.Past {
+	background-color: #466447;
+}
+
+/* No busy type found */
+tbody#mainview td.a.Error {
+	background-color: #222;
+}
+
+/* This is a special type of 'common' special days. Like christmas, easter etc. */
+tbody#mainview td.a.Red {
+	background-color: #953;
+}
+tbody#mainview td.a.Red.Past {
+	background-color: #7A534C;
+}
+
+
+
+@media only screen  and (min-device-width : 320px)  and (max-device-width : 480px) {
+	td.sep {
+		width: 2px;
+	}
+	td.user {
+		text-align: right;
+		min-width: 70px;
+		font-size: 90%;
+		padding: 3px 0px;
+	}
+	td.daytitle {
+		font-size: 65% ! important;
+	}
+}
+
+
+
+
+
+td.user {
+	text-align: right;
+	min-width: 130px;
+}
+
+td.sep {
+	width: 8px !important; padding: 0px !important; margin: 0px;
+}
+/*
+.allContent {
+	margin: 0;
+	padding: 0;
+  width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+*/

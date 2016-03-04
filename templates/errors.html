@@ -1,0 +1,23 @@
+<div class="list-group">
+	{#errors}
+		<div class="list-group-item">
+
+		<div class="media">
+			<div class="media-left">
+
+				<img style="margin: 0px; max-width: 64px; max-height: 64px"
+		 class="media-object img-circle center-block" 
+		 src="https://cal.uninett.no/media/?mail={mail}" alt="...">
+			 </div>
+
+			 <div class="media-body">
+
+
+				<h4 style="color: #933; margin: 0px"><span class="fa fa-warning"></span> {error}</h4>
+				<h3  style="margin: 0px">{name}</h3>
+				<p style="margin: 0px"><span  class="fa fa-user"></span> {uid} &nbsp; <span  class="fa fa-envelope-o"></span> {mail}</p>
+			</div>
+		</div>
+		</div>
+	{/errors}
+</div>
