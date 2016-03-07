@@ -4,12 +4,68 @@
 
 
 
+
+@media (min-width: 34em) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (min-width: 58em) {
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media (min-width: 90em) {
+    .card-columns {
+        -webkit-column-count: 6;
+        -moz-column-count: 6;
+        column-count: 6;
+    }
+}
+
+@media (min-width: 125em) {
+    .card-columns {
+        -webkit-column-count: 10;
+        -moz-column-count: 10;
+        column-count: 10;
+    }
+}
+
+
+
+
+
+
+@media (min-width: 90em) {
+    body.fullscreen .card-columns {
+        column-count: 10;
+    }
+}
+
+@media (min-width: 125em) {
+    body.fullscreen .card-columns {
+        column-count: 16;
+    }
+}
+
+
+
+
+
+
 body.stateLoggedIn  .showOnLoggedIn { display: block !important; }
 body.stateLoggedIn  .showOnLoggedOut { display: none; }
 
 body.stateLoggedOut .showOnLoggedIn { display: none ; }
 body.stateLoggedOut .showOnLoggedOut { display: block !important; }
 
+/*
 div.currentBox {
 	overflow: visible;
 }
@@ -46,20 +102,20 @@ div.currentBox.currentBoxFocus {
 	min-height: 300px;
 	border: 3px solid #333;
 }
+*/
 div.currentBox.currentBoxFocus img {
 	/*max-width: 95%;*/
 /*	border: 3px solid #888;*/
 }
-
+/*
 div.currentBox .caname {
 	margin-top: -22px; 
-	/*background: rgba(0,0,0,0.60);*/
 	z-index: 1000;
-	/*color: #eee;*/
+
 	text-align: center;
 
 }
-
+*/
 
 
 
@@ -97,10 +153,15 @@ div.currentBox {
 }
 
 .xevent {
-	text-align: center;
+	font-family: "Arial Narrow";
+	font-size: 80%;
+	/*text-align: center;*/
 }
-.timemrk {
-	/*float: right;*/
+.xevent p {
+	margin: 0px;
+}
+/*.timemrk {
+
 	font-size: 96%;
 	background-color: #444;
 	color: white;
@@ -110,7 +171,7 @@ div.currentBox {
 }
 .timemrk span {
 
-}
+}*/
 
 .mainview .col-sm-4 {
 	padding: 0px 3px;

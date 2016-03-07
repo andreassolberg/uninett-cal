@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
-	"use strict";	
+	"use strict";
 
-	var 
+	var
 		dust = require('dust'),
 		Pane = require('./Pane'),
 		EventEmitter = require('../EventEmitter'),
@@ -9,16 +9,14 @@ define(function(require, exports, module) {
 		$ = require('jquery'),
 		moment = require('moment'),
 
-		
 		Event = require('../models/Event'),
 
 		UserCalendar = require('../models/UserCalendar'),
 		UserCalendarCurrent = require('../models/UserCalendarCurrent'),
 
-		template = require('text!templates/currentavailability.html')
-		;
+		template = require('text!templates/currentavailability.html');
 
-		
+
 	/*
 	 * This controller controls 
 	 */
@@ -43,10 +41,11 @@ define(function(require, exports, module) {
 			}, 1000);
 
 
-			this.el.on("click", ".currentBox", function(e) {
-				e.preventDefault();
-				$(e.currentTarget).toggleClass("currentBoxFocus");
-			});
+
+			// this.el.on("click", ".currentBox", function(e) {
+			// 	e.preventDefault();
+			// 	$(e.currentTarget).toggleClass("currentBoxFocus");
+			// });
 
 			this.freebusystore.on("updated", this.proxy("updateData"));
 
@@ -57,6 +56,7 @@ define(function(require, exports, module) {
 		"setFullscreen": function(v) {
 			this.fullscreen = v;
 			var group = this.app.getGroup();
+			$("body").addClass("fullscreen");
 			this.app.setHash('/current/group/' + group + (this.fullscreen ? '/fullscreen' : ''));
 		},
 
@@ -95,26 +95,21 @@ define(function(require, exports, module) {
 		"draw": function(act) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
-				var view = {"week": true};
+				var view = {
+					"week": true
+				};
 				dust.render("currentavailability", view, function(err, out) {
 					// console.error("Render freebusy", out);
 					// console.log("that.el", that.el);
 					that.el.empty().append(out);
 
-
-
-
-		
-
-
-					if (!err) { 
-						resolve() 
+					if (!err) {
+						resolve()
 					} else {
-						reject(err); 
+						reject(err);
 					}
 				});
 				if (act) {
-					// console.error("ACTIVATE");
 					that.activate();
 				}
 			});
@@ -128,24 +123,28 @@ define(function(require, exports, module) {
 			var groups = this.freebusystore.getGroups();
 			var group = this.app.getGroup();
 
-			if (group === null) {return null;}
-			if (group === '_all') {return null;}
+			if (group === null) {
+				return null;
+			}
+			if (group === '_all') {
+				return null;
+			}
 			if (group === '_me' && currentUser) {
 				filter[currentUser] = true;
-	 		}
-	 		if (groups.hasOwnProperty(group)) {
-	 			for(var i = 0; i < groups[group].users.length; i++) {
-	 				filter[groups[group].users[i]] = true;
-	 			}
-	 		}
-	 		return filter;
-	 	},
+			}
+			if (groups.hasOwnProperty(group)) {
+				for (var i = 0; i < groups[group].users.length; i++) {
+					filter[groups[group].users[i]] = true;
+				}
+			}
+			return filter;
+		},
 
 		"getUserCell": function(cal, day, i) {
 			var str = '';
 
 			var period = this.weekselector.getPeriod(day, i);
-			var periodend = this.weekselector.getPeriod(day, i+1);
+			var periodend = this.weekselector.getPeriod(day, i + 1);
 			var check = cal.checkPeriod(period, periodend);
 
 			var even = (i % 2 === 0) ? 'even' : 'odd';
@@ -177,7 +176,7 @@ define(function(require, exports, module) {
 
 		"getUserDay": function(cal, day) {
 			var str = '<td class="sep"></td>';
-			for(var i = 0; i < 16; i++) {
+			for (var i = 0; i < 16; i++) {
 				str += this.getUserCell(cal, day, i);
 			}
 			return str;
@@ -187,9 +186,9 @@ define(function(require, exports, module) {
 
 			var s = name.split(" ");
 			// console.error("s", s);
-			s[0] = '<span style="font-size: 200%">' + s[0] + '</span>';
-			return s.join(" ");
-
+			// s[0] = '<span style="font-size: 200%">' + s[0] + '</span>';
+			// return s.join(" ");
+			return s[0];
 
 		},
 
@@ -197,10 +196,17 @@ define(function(require, exports, module) {
 
 		"getCurrentEvents": function(matches, type) {
 
+			var cmix = {
+				"now": "card-danger",
+				"near": "card-warning",
+				"next": "card-info"
+			};
 			var str = '';
 
-			for(var i = 0; i < matches[type].length; i++) {
-				str += '<div class="currentEvent currentEvent' + type + '">';
+			console.log("Looking up ", type);
+			// 
+			for (var i = 0; i < matches[type].length; i++) {
+				str += '<div class="card-block ' + cmix[type] + '" style="padding: 3px">';
 				str += matches[type][i].getStrCurrent(type);
 				str += '</div>';
 			}
@@ -225,33 +231,48 @@ define(function(require, exports, module) {
 			var user = currentStatus.user;
 
 			var str = '';
-			
-			if (wide) {
-				str += '<div class="col-xs-4 col-sm-3 col-md-2 col-lg-1">';
-			} else {
-				str += '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
-			}
-			
+
+			// if (wide) {
+			// 	str += '<div class="col-xs-4 col-sm-3 col-md-2 col-lg-1">';
+			// } else {
+			// 	str += '<div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">';
+			// }
+
+			// str += '<div class="card-deck-wrapper">';
+			// str += '<div class="card-columns">'
+
+			var cmix = {
+				"free": "card-success",
+				"busy": "card-danger",
+				"near": "card-warning",
+				"next": "card-success"
+			};
 
 
 
 			// var str = '<div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">';
-			str += '<div class=" currentBox ' + currentStatus.status + '">';
+			str += '<div class="card ' + cmix[currentStatus.status] + '">';
+			str += '<div class="card-block" style="padding-top: 3px; padding-bottom: 3px">' + this.getBigName(user.name) + '</div>';
+			str += '<img class="card-img img-fluid" src="https://cal.uninett.no/media/?mail=' + user.mail + '" />';
 
 
-			str += '<div class="caption">' + 
-
-				// '<p style="font-size: 40%">' + user.mail + '</p>' +
-				// '<pre>' + JSON.stringify(currentStatus, undefined, 1) + '</pre>'
-				'<div><img class="profilephoto img-circle center-block" src="https://cal.uninett.no/media/?mail=' + user.mail + '" /></div>' +
-				'<h3 class="caname" style="font-size: 80%"><span>' + this.getBigName(user.name) + '</span></h3>' +
-				'<div class="cae now">' + this.getCurrentEvents(currentStatus, "now") + '</div>' +
-				'<div class="cae near">' + this.getCurrentEvents(currentStatus, "near") + '</div>' +
-				'<div class="cae next">' + this.getCurrentEvents(currentStatus, "next") + '</div>' +
-				'</div>';
+			str += this.getCurrentEvents(currentStatus, "now");
+			str += this.getCurrentEvents(currentStatus, "near");
+			str += this.getCurrentEvents(currentStatus, "next");
 
 
-			str += '</div></div>';
+
+			// str += '<div class="card-block">' +
+
+			// 	// '<p style="font-size: 40%">' + user.mail + '</p>' +
+			// 	// '<pre>' + JSON.stringify(currentStatus, undefined, 1) + '</pre>'
+			// 	// '<h3 class="caname" style="font-size: 80%"><span>' + this.getBigName(user.name) + '</span></h3>' +
+			// 	'<div class="cae now">' + this.getCurrentEvents(currentStatus, "now") + '</div>' +
+			// 	'<div class="cae near">' + this.getCurrentEvents(currentStatus, "near") + '</div>' +
+			// 	'<div class="cae next">' + this.getCurrentEvents(currentStatus, "next") + '</div>' +
+			// 	'</div>';
+
+			str += '</div>';
 
 
 			return str;
@@ -290,10 +311,12 @@ define(function(require, exports, module) {
 
 			// console.error("Filter", filter);
 
-			for(key in targetlist) {
+			for (key in targetlist) {
 
 				var userCalendar = this.freebusystore.getUserCalendarByMail(targetlist[key].mail);
-				if (userCalendar === null) {continue; }
+				if (userCalendar === null) {
+					continue;
+				}
 				// console.log("User calendar for ", targetlist[key].mail, " is ", userCalendar);
 				var currentStatus = userCalendar.checkCurrent();
 				targetarray.push(currentStatus);
@@ -301,8 +324,10 @@ define(function(require, exports, module) {
 
 			UserCalendarCurrent.sort(targetarray);
 
-			for(i = 0; i < targetarray.length; i++) {
-				if (filter !== null && !filter.hasOwnProperty(targetarray[i].user.mail)) {continue;}
+			for (i = 0; i < targetarray.length; i++) {
+				if (filter !== null && !filter.hasOwnProperty(targetarray[i].user.mail)) {
+					continue;
+				}
 				item = targetarray[i];
 				// console.error("About to process", item);
 				// console.log("row", this.getUserRow(item));
@@ -311,13 +336,13 @@ define(function(require, exports, module) {
 			}
 
 			// setTimeout(function() {
-				// that.el.find(".currentBox").matchHeight({
-				//     byRow: true,
-				//     property: 'height',
-				//     target: null,
-				//     remove: false
-				// });
-				// console.error("Set same height");
+			// that.el.find(".currentBox").matchHeight({
+			//     byRow: true,
+			//     property: 'height',
+			//     target: null,
+			//     remove: false
+			// });
+			// console.error("Set same height");
 			// }, 200);
 
 

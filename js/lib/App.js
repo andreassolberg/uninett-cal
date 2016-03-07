@@ -1,6 +1,4 @@
-
-
-define(function (require, exports, module) {
+define(function(require, exports, module) {
 
 	"use strict";
 
@@ -10,7 +8,7 @@ define(function (require, exports, module) {
 		FeideConnect = require('bower/feideconnectjs/src/FeideConnect').FeideConnect,
 		AppController = require('./controllers/AppController'),
 
-		UDS= require('./controllers/UDS'),
+		UDS = require('./controllers/UDS'),
 		FreeBusyController = require('./controllers/FreeBusyController'),
 		CurrentAvailability = require('./controllers/CurrentAvailability'),
 		ContactsController = require('./controllers/ContactsController'),
@@ -28,7 +26,7 @@ define(function (require, exports, module) {
 
 		PaneController = require('./controllers/PaneController'),
 
-		utils  = require('./utils'),
+		utils = require('./utils'),
 		rawconfig = require('text!../../etc/config.js'),
 		moment = require('moment'),
 		$ = require('jquery');
@@ -41,7 +39,7 @@ define(function (require, exports, module) {
 	var tmpFooter = require('text!templates/footer.html');
 
 	require('../../bower_components/bootstrap/dist/js/bootstrap.min.js');
-	
+
 
 	/**
 	 * Here is what happens when the page loads:
@@ -55,7 +53,7 @@ define(function (require, exports, module) {
 	 */
 
 	var App = AppController.extend({
-		
+
 		"init": function() {
 			var that = this;
 
@@ -76,14 +74,14 @@ define(function (require, exports, module) {
 			this.currentVersion = null;
 			setInterval(function() {
 				that.checkVersion();
-			}, 45*1000);
-		
-			
+			}, 45 * 1000);
+
+
 			// console.error("TZ .---- ");
 			// console.log( Event.getNow().format() );
 
 
- 			this.groupselector = new GroupSelector(this.el, true);
+			this.groupselector = new GroupSelector(this.el, true);
 			// this.groupselector.set(selectedGroup);	
 			// this.groupselector.on(function(sel) {
 			// 	// that.freebusyco
@@ -91,7 +89,6 @@ define(function (require, exports, module) {
 			// 	// that.updateData();
 			// 	// 
 			// });
-
 
 
 
@@ -123,7 +120,6 @@ define(function (require, exports, module) {
 
 
 
-
 			this.pc = new PaneController(this.el.find('#panecontainer'));
 
 			this.freebusy = new FreeBusyController(this, this.feideconnect, this.freebusystore);
@@ -132,7 +128,7 @@ define(function (require, exports, module) {
 			this.groupselector.on(function(sel) {
 
 				if (that.freebusy.isActive) {
-					that.freebusy.setGroup(sel);	
+					that.freebusy.setGroup(sel);
 					that.freebusy.updateData();
 				}
 				if (that.vacation.isActive) {
@@ -143,7 +139,7 @@ define(function (require, exports, module) {
 					that.currentAvailability.setGroup(sel);
 					that.currentAvailability.updateData();
 				}
-				
+
 			});
 
 
@@ -181,7 +177,7 @@ define(function (require, exports, module) {
 			// this.route();
 
 
-			this.draw();	
+			this.draw();
 
 			// that.feideconnect.authenticate();
 
@@ -237,11 +233,6 @@ define(function (require, exports, module) {
 
 
 
-
-
-
-
-
 			this.feideconnect.onAuthenticated()
 				.then(that.proxy("onLoaded"))
 				.then(function() {
@@ -250,7 +241,7 @@ define(function (require, exports, module) {
 					$("body").removeClass("stateLoggedOut");
 
 					$("#username").empty().text(user.name);
-					$("#profilephoto").html('<img style="margin-top: -28px; max-height: 48px; max-width: 48px; border: 0px solid #b6b6b6; border-radius: 32px; box-shadow: 1px 1px 4px #aaa;" src="https://auth.feideconnect.no/user/media/' + user.profilephoto + '" alt="Profile photo" />');
+					$("#profilephoto").html('<img style="; max-height: 48px; max-width: 48px; border: 0px solid #b6b6b6; border-radius: 32px; box-shadow: 1px 1px 4px #aaa;" src="https://auth.dataporten.no/user/media/' + user.profilephoto + '" alt="Profile photo" />');
 
 					$(".loader-hideOnLoad").hide();
 					$(".loader-showOnLoad").show();
@@ -260,7 +251,6 @@ define(function (require, exports, module) {
 
 
 				})
-						
 
 
 
@@ -330,21 +320,24 @@ define(function (require, exports, module) {
 		"draw": function() {
 			var that = this;
 
-			var view = {
-			};
+			var view = {};
 
 			this.loaded = false;
 			return Promise.all([
 				new Promise(function(resolve, reject) {
 					dust.render("header", view, function(err, out) {
-						if (err) { return reject(err); }
+						if (err) {
+							return reject(err);
+						}
 						that.el.find("#header").append(out);
 						resolve();
 					});
 				}),
 				new Promise(function(resolve, reject) {
 					dust.render("footer", view, function(err, out) {
-						if (err) { return reject(err); }
+						if (err) {
+							return reject(err);
+						}
 						that.el.find("#footer").append(out);
 						resolve();
 					});
@@ -372,8 +365,6 @@ define(function (require, exports, module) {
 
 
 
-
-
 		"setErrorMessage": function(title, type, msg) {
 
 			var that = this;
@@ -388,10 +379,10 @@ define(function (require, exports, module) {
 				pmsg = '<p>' + utils.escape(msg, false).replace("\n", "<br />") + '</p>';
 			}
 
-			var str = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' +  
+			var str = '<div class="alert alert-' + type + ' alert-dismissible" role="alert">' +
 				' <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-				(title ? '<strong>' + utils.escape(title, false).replace("\n", "<br />")  + '</strong>' : '') +
-				pmsg + 
+				(title ? '<strong>' + utils.escape(title, false).replace("\n", "<br />") + '</strong>' : '') +
+				pmsg +
 				'</div>';
 
 			if (this.hasOwnProperty("errorClearCallback")) {
@@ -446,7 +437,7 @@ define(function (require, exports, module) {
 			$("#mainOuter").removeClass("col-sm-9").addClass("col-sm-12");
 			$("#mainNav").hide();
 
-			console.log("About to set fullscreen " , true);
+			console.log("About to set fullscreen ", true);
 			this.currentAvailability.setFullscreen(true);
 			this.routeCurrent(x);
 
@@ -470,4 +461,3 @@ define(function (require, exports, module) {
 
 	return App;
 });
-	

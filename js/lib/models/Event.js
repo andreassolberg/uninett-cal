@@ -1,9 +1,8 @@
 define(function(require, exports, module) {
-	"use strict";	
+	"use strict";
 
-	var 
-		Model = require('./Model')
-		;
+	var
+		Model = require('./Model');
 
 
 	var moment = require('moment');
@@ -20,12 +19,13 @@ define(function(require, exports, module) {
 			'"': '&#34;',
 			"'": '&#39;'
 		};
-		var repl = function(c) { return MAP[c]; };
+		var repl = function(c) {
+			return MAP[c];
+		};
 		return function(s) {
 			return s.replace(/[&<>'"]/g, repl);
 		};
 	})();
-
 
 
 
@@ -43,9 +43,7 @@ define(function(require, exports, module) {
 
 		"getStrCurrent": function(type) {
 			var now = Event.getNow();
-			var str = '<div class="xevent" style="border-top: 1px solid #ccc; padding-top: 2px">';
-
-
+			var str = '<div class="xevent" style="">';
 
 			var timemrk = '';
 
@@ -59,7 +57,6 @@ define(function(require, exports, module) {
 
 
 				if (!this.end.isBefore(now)) {
-
 					timemrk += '<span style="white-space: nowrap;"  class="timemrk" ><i class="fa fa-hourglass-end"></i> ' + this.end.fromNow(true) + '</span>';
 				}
 			}
@@ -70,7 +67,7 @@ define(function(require, exports, module) {
 
 					timemrk += '<span style="white-space: nowrap;" class="timemrk" ><i class="fa fa-step-forward"></i> ' + this.end.fromNow(true) + '</span>';
 				}
-				
+
 			}
 
 
@@ -82,7 +79,6 @@ define(function(require, exports, module) {
 			if (this.data.CalendarEventDetails && this.data.CalendarEventDetails.Location) {
 				str += '<span><i class="fa fa-map-marker"></i> ' + escapeHTML(this.data.CalendarEventDetails.Location) + '</span>';
 			}
-
 
 
 
@@ -102,14 +98,14 @@ define(function(require, exports, module) {
 
 			// str += '<p>' + Math.abs(this.start.diff(now, "hours")) + '</p>';
 
-			if (Math.abs(this.start.diff(now, "hours")) > 8 || 
+			if (Math.abs(this.start.diff(now, "hours")) > 8 ||
 				Math.abs(this.end.diff(now, "hours")) > 8) {
 
 				str += '';
 			} else {
 
-				str += '<span style="margin-left: 1em"><i class="fa fa-clock-o"></i> ' + this.start.format('HH:mm') + '-' + 
-						this.end.format('HH:mm') + '</span>';
+				str += '<span style="margin-left: 1em"><i class="fa fa-clock-o"></i> ' + this.start.format('HH:mm') + '-' +
+					this.end.format('HH:mm') + '</span>';
 
 
 			}
@@ -122,17 +118,17 @@ define(function(require, exports, module) {
 		},
 
 
-		"getStr" : function(type) {
+		"getStr": function(type) {
 
 			var str = '<p>';
 			// console.log("get string of this event", this);
 
 			if (type === 'season') {
-				str += this.start.format('Do MMMM') + ' - ' + 
+				str += this.start.format('Do MMMM') + ' - ' +
 					this.end.clone().subtract(5, 'minutes').format('Do MMMM') + ' ';
 
 			} else {
-				str += this.start.format('HH:mm') + '-' + 
+				str += this.start.format('HH:mm') + '-' +
 					this.end.format('HH:mm') + ' ';
 
 			}
@@ -153,8 +149,8 @@ define(function(require, exports, module) {
 		},
 
 		"getBusyType": function() {
-			if (this.data.CalendarEventDetails && this.data.CalendarEventDetails.Location && 
-					this.data.CalendarEventDetails.Location === 'Norge') {
+			if (this.data.CalendarEventDetails && this.data.CalendarEventDetails.Location &&
+				this.data.CalendarEventDetails.Location === 'Norge') {
 				return 'Red';
 
 			}
@@ -165,20 +161,28 @@ define(function(require, exports, module) {
 		},
 
 		"overlapTimeslot": function(period, resolution) {
-			if (this.start.isAfter(period, resolution)) {return false;} // Event is starting after the period end
-			if (this.end.isBefore(period, resolution)) {return false;} // Event is ending before period start
+			if (this.start.isAfter(period, resolution)) {
+				return false;
+			} // Event is starting after the period end
+			if (this.end.isBefore(period, resolution)) {
+				return false;
+			} // Event is ending before period start
 			return true;
 
 		},
 
 		"overlap": function(periodstart, periodend) {
 			// var periodend = periodstart.clone().add(30, 'minutes');
-			if (this.start.isAfter(periodend, 'minute') || 
+			if (this.start.isAfter(periodend, 'minute') ||
 				this.start.isSame(periodend, 'minute')
-				) {return false; }// Event is starting after the period end
-			if (this.end.isBefore(periodstart, 'minute') || 
+			) {
+				return false;
+			} // Event is starting after the period end
+			if (this.end.isBefore(periodstart, 'minute') ||
 				this.end.isSame(periodstart, 'minute')
-				) {return false;} // Event is ending before period start
+			) {
+				return false;
+			} // Event is ending before period start
 			return true;
 		}
 
@@ -188,7 +192,7 @@ define(function(require, exports, module) {
 
 	Event.getNow = function(update) {
 
-		// var x = moment("2015-09-14 10:00");
+		// var x = moment('2016-03-03 12:20');
 		// return x;
 
 
@@ -211,11 +215,15 @@ define(function(require, exports, module) {
 			'Busy': 20
 		};
 		var max = 0;
-		for(var i = 0; i < events.length; i++) {
-			if (levels[events[i].getBusyType()] > max) {max = levels[events[i].getBusyType()];}
+		for (var i = 0; i < events.length; i++) {
+			if (levels[events[i].getBusyType()] > max) {
+				max = levels[events[i].getBusyType()];
+			}
 		}
-		for(var key in levels) {
-			if (levels[key] === max) {return key;}
+		for (var key in levels) {
+			if (levels[key] === max) {
+				return key;
+			}
 		}
 		return 'Error';
 	}
@@ -225,4 +233,3 @@ define(function(require, exports, module) {
 	return Event;
 
 });
-
