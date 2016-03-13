@@ -53,7 +53,7 @@ define(function(require, exports, module) {
 				"errors": this.errors
 			};
 			dust.render("errors", view, function(err, out) {
-				console.log("Got this", out);
+				// console.log("Got this", out);
 				that.el.empty().append(out);
 			});
 			if (act) {

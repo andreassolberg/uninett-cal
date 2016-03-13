@@ -57,6 +57,10 @@
 
 
 
+table tbody.mainview td, .table th {
+	padding: 2px 5px;
+}
+
 
 
 body.stateLoggedIn  .showOnLoggedIn { display: block !important; }

@@ -9,14 +9,11 @@
 
 		<div id="weekdisplay" class="col-sm-6">
 			<button class="btn btn-default prevWeek" type="submit">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-			Forrige</button>
-			<button class="btn btn-default thisWeek" type="submit">
-				Denne uken</button>
+			<i class="fa fa-chevron-left"></i> Forrige</button>
+			<button class="btn btn-default thisWeek" type="submit"> Denne uken</button>
 			<div class="weeknow" style="display: inline"></div>
 
-			<button class="btn btn-default nextWeek" type="submit">Neste
-				<span class="glyphicon glyphicon-chevron-right"></span>
+			<button class="btn btn-default nextWeek" type="submit">Neste <i class="fa fa-chevron-right"></i>
 			</button>
 
 		</div>
@@ -24,17 +21,7 @@
 		<div id="updateTimer" class="col-md-6 " style="text-align: right; color: #aaa"></div>
 
 	</div>
-	<div class="row">
-		<div class="col-md-12" style="text-align: right">
-			<div class="checkbox">
-			  <label>
-			    <input type="checkbox" id="showmeetingroom" checked="checked" value="">
-				    Vis møterom <!-- <i class="fa fa-building"></i>  -->
-			  </label>
-			</div>
 
-		</div>
-	</div>
 
 
 	{/week}
@@ -42,10 +29,10 @@
 	{#season}
 	<div class="row ">
 		<div id="weekdisplay" class="col-sm-12">
-			<ul id="seasonpicker" class="nav nav-tabs">
-			  <li class="pick1" role="presentation"><a href="#">Vår</a></li>
-			  <li class="pick2 active" role="presentation"><a href="#">Sommer</a></li>
-			  <li class="pick3" role="presentation"><a href="#">Høst</a></li>
+			<ul id="seasonpicker" class="nav nav-inline" style="">
+			  <li class="nav-item pick1" role="presentation"><a href="#">Vår</a></li>
+			  <li class="nav-item pick2 active" role="presentation"><a href="#">Sommer</a></li>
+			  <li class="nav-item pick3" role="presentation"><a href="#">Høst</a></li>
 			</ul>
 		</div>
 

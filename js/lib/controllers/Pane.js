@@ -28,13 +28,13 @@ define(function(require, exports, module) {
 		},
 		"activate": function() {
 			this.isActive = true;
-			console.log("ACTIVATE PANE");
+			// console.log("ACTIVATE PANE");
 			if (this.panecontroller === null) {throw new Error('Cannot activate pane that is not added to a controller');}
 			this.panecontroller.activate(this.identifier);
 		},
 		"deactivate": function() {
 			this.isActive = false;
-			console.log("Deactivating pane with identifier " + this.identifier);
+			// console.log("Deactivating pane with identifier " + this.identifier);
 			// TODO trigger an event.
 		}
 

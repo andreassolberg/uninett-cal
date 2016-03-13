@@ -38,7 +38,8 @@ define(function(require, exports, module) {
 	var tmpHeader = require('text!templates/header.html');
 	var tmpFooter = require('text!templates/footer.html');
 
-	require('../../bower_components/bootstrap/dist/js/bootstrap.min.js');
+	// require('tether');
+	require('bootstrap');
 
 
 	/**
@@ -257,11 +258,11 @@ define(function(require, exports, module) {
 		},
 
 		"setContainerWidth": function(fluid) {
-			if (fluid) {
-				$("#allContent").removeClass("container").addClass("container-fluid");
-			} else {
-				$("#allContent").removeClass("container-fluid").addClass("container");
-			}
+			// if (fluid) {
+			// 	$("#allContent").removeClass("container").addClass("container-fluid");
+			// } else {
+			// 	$("#allContent").removeClass("container-fluid").addClass("container");
+			// }
 		},
 
 		"updateTopLevelPane": function() {
@@ -437,7 +438,7 @@ define(function(require, exports, module) {
 			$("#mainOuter").removeClass("col-sm-9").addClass("col-sm-12");
 			$("#mainNav").hide();
 
-			console.log("About to set fullscreen ", true);
+			// console.log("About to set fullscreen ", true);
 			this.currentAvailability.setFullscreen(true);
 			this.routeCurrent(x);
 

@@ -29,7 +29,7 @@ define(function(require, exports, module) {
 			var that = this;
 			var view = {};
 			dust.render("contacts", view, function(err, out) {
-				console.log("Got this", out);
+				// console.log("Got this", out);
 				that.el.empty().append(out);
 			});
 			if (act) {

@@ -1,47 +1,51 @@
 define(function(require, exports, module) {
-	"use strict";	
+	"use strict";
 
-	var 
+	var
 		$ = require('jquery'),
 
 		Controller = require('./Controller')
 
-		;
+	;
 
-	
+
 	var AppController = Controller.extend({
 
 		"init": function() {
-			
-			console.log("initiator (AppController)");
+
+			// console.log("initiator (AppController)");
 
 			this._super($("body"));
 
 			// Routing
-			
+
 			if (!this.routes) {
 				this.routes = [];
 			}
 			this.routingEnabled = true;
 			$(window).bind('hashchange', $.proxy(this.route, this));
 			$(window).bind('load', function() {
-				console.log("====> onload");
+				// console.log("====> onload");
 			});
 
 		},
 
 		"setupRoute": function(match, func) {
-			if (!this.routes) {this.routes = [];}
+			if (!this.routes) {
+				this.routes = [];
+			}
 			this.routes.push([match, func]);
 		},
 
 		"route": function() {
-			
-			if (!this.routingEnabled) {return;}
+
+			if (!this.routingEnabled) {
+				return;
+			}
 			// console.log("Routing continue", this.routingEnabled);
 
 			var hash = window.location.hash;
-			
+
 			if (hash.length < 3) {
 				this.setHash('/');
 				hash = window.location.hash;
@@ -50,28 +54,26 @@ define(function(require, exports, module) {
 
 			var parameters;
 
-			for(var i = 0; i < this.routes.length; i++) {
+			for (var i = 0; i < this.routes.length; i++) {
 				parameters = hash.match(this.routes[i][0]);
 				if (parameters) {
-					console.log("Found a route match on ", this.routes[i], parameters);
+					// console.log("Found a route match on ", this.routes[i], parameters);
 					if (typeof this[this.routes[i][1]] === 'function') {
 						var args = Array.prototype.slice.call(parameters, 1);
 						this[this.routes[i][1]].apply(this, args);
 					}
 					return;
-				} else {
-					console.log("Dit not found a route match on ", this.routes[i]);
 				}
 
 			}
 
-			console.error("no match found for this route");
+			// console.error("no match found for this route");
 
 		},
 
 		"setHash": function(hash) {
 
-			console.log("Set hash", hash);
+			// console.log("Set hash", hash);
 			this.routingEnabled = false;
 			var that = this;
 

@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
-	"use strict";	
+	"use strict";
 
-	var 
+	var
 		dust = require('dust'),
 		Pane = require('./Pane'),
 		EventEmitter = require('../EventEmitter'),
@@ -10,13 +10,12 @@ define(function(require, exports, module) {
 
 		WeekSelector = require('../WeekSelector'),
 
-		
+
 		Event = require('../models/Event'),
 
 		moment = require('moment'),
 
-		template = require('text!templates/freebusy.html')
-		;
+		template = require('text!templates/freebusy.html');
 
 	/*
 	 * This controller controls 
@@ -43,11 +42,11 @@ define(function(require, exports, module) {
 
 
 
-			this.el.on('click', '#showmeetingroom', function(e) {
+			$("body").on('click', '#showmeetingroom', function(e) {
 				// e.preventDefault();
 				that.updateData();
 			});
-			
+
 
 
 			this.weekselector = new WeekSelector(this.el);
@@ -73,9 +72,9 @@ define(function(require, exports, module) {
 
 		},
 
-		"showMeetingRoom": function () {
+		"showMeetingRoom": function() {
 
-			return this.el.find("#showmeetingroom").is(":checked");
+			return $("#showmeetingroom").is(":checked");
 
 		},
 
@@ -90,7 +89,7 @@ define(function(require, exports, module) {
 				html: true,
 				trigger: "hover",
 				selector: 'td.a.c',
-				content: function () {
+				content: function() {
 					var cell = $(this).data('cell');
 					var day = $(this).data('day');
 					var user = $(this).closest('tr').data('user');
@@ -109,16 +108,16 @@ define(function(require, exports, module) {
 					}
 					// console.log("popover with user [" + user+ "]", user, day, cell);
 					var period = that.weekselector.getPeriod(day, cell);
-					var periodend = that.weekselector.getPeriod(day, cell+1);
+					var periodend = that.weekselector.getPeriod(day, cell + 1);
 					var content = userCalendar.getPopover(period, periodend);
 					// console.log("Getpopover for period", period.format('lll'));
 					// that.popovercache[cachestr] = content;
-					
+
 					return content;
-			    }
+				}
 			};
 
-			// this.el.popover(popOverSettings);
+			this.el.popover(popOverSettings);
 		},
 
 		"updateTimer": function() {
@@ -134,15 +133,17 @@ define(function(require, exports, module) {
 		"draw": function(act) {
 			var that = this;
 			return new Promise(function(resolve, reject) {
-				var view = {"week": true};
+				var view = {
+					"week": true
+				};
 				dust.render("freebusy", view, function(err, out) {
 					// console.error("Render freebusy", out);
 					// console.log("that.el", that.el);
 					that.el.empty().append(out);
-					if (!err) { 
-						resolve() 
+					if (!err) {
+						resolve()
 					} else {
-						reject(err); 
+						reject(err);
 					}
 				});
 				if (act) {
@@ -160,24 +161,28 @@ define(function(require, exports, module) {
 			var groups = this.freebusystore.getGroups();
 			var group = this.app.getGroup();
 
-			if (group === null) {return null;}
-			if (group === '_all') {return null;}
+			if (group === null) {
+				return null;
+			}
+			if (group === '_all') {
+				return null;
+			}
 			if (group === '_me' && currentUser) {
 				filter[currentUser] = true;
-	 		}
-	 		if (groups.hasOwnProperty(group)) {
-	 			for(var i = 0; i < groups[group].users.length; i++) {
-	 				filter[groups[group].users[i]] = true;
-	 			}
-	 		}
-	 		return filter;
-	 	},
+			}
+			if (groups.hasOwnProperty(group)) {
+				for (var i = 0; i < groups[group].users.length; i++) {
+					filter[groups[group].users[i]] = true;
+				}
+			}
+			return filter;
+		},
 
 		"getUserCell": function(cal, day, i) {
 			var str = '';
 
 			var period = this.weekselector.getPeriod(day, i);
-			var periodend = this.weekselector.getPeriod(day, i+1);
+			var periodend = this.weekselector.getPeriod(day, i + 1);
 			var check = cal.checkPeriod(period, periodend);
 
 			var even = (i % 2 === 0) ? 'even' : 'odd';
@@ -209,25 +214,27 @@ define(function(require, exports, module) {
 
 		"getUserDay": function(cal, day) {
 			var str = '<td class="sep"></td>';
-			for(var i = 0; i < 16; i++) {
+			for (var i = 0; i < 16; i++) {
 				str += this.getUserCell(cal, day, i);
 			}
 			return str;
 		},
 
 		"getUserRow": function(user) {
-			var str = '<tr data-user="' + user.mail + '">' + 
-				'<td class="user">' + user.name + '</td>';
+			var str = '<tr data-user="' + user.mail + '">' +
+				'<td class="user" style="width: 150px">' +
+				user.name +
+				// '<img src="https://cal.uninett.no/media/?mail=' + user.mail + '" style="max-height: 44px; margin: -10px; border: 1px solid #eee" class="responsive pull-left" />' +
+				'</td>';
 			var day;
-
 			var userCalendar = this.freebusystore.getUserCalendarByMail(user.mail);
 
 			if (userCalendar !== null) {
-				for(day = 0; day < 5; day++ ) {
+				for (day = 0; day < 5; day++) {
 					str += this.getUserDay(userCalendar, day);
 				}
 			} else {
-				str += '<td class="nodata" colspan="' + (5*17) + '">No data</td>';
+				str += '<td class="nodata" colspan="' + (5 * 17) + '">No data</td>';
 				return '';
 			}
 
@@ -271,7 +278,7 @@ define(function(require, exports, module) {
 			var mh = this.el.find('.mainheader').eq(0).empty();
 
 			var str = '<tr><td>&nbsp;</td>';
-			for(i = 0; i < 5; i++) {
+			for (i = 0; i < 5; i++) {
 				str += '<td class="daytitle" colspan="17">' + this.weekselector.getDayTitle(i) + '</td>';
 			}
 			str += '</tr>';
@@ -281,7 +288,7 @@ define(function(require, exports, module) {
 			var filter = this.getUserFilter();
 
 
-			
+
 			var targetlist = this.freebusystore.getUsers();
 
 
@@ -289,51 +296,45 @@ define(function(require, exports, module) {
 			var key, item;
 			var targetarray = [];
 
-			for(key in targetlist) {
+			for (key in targetlist) {
 				targetarray.push(targetlist[key]);
 			}
-			targetarray.sort(function(a,b) {
-				if (a.name > b.name) {return 1;}
-				if (a.name < b.name) {return -1;}
+			targetarray.sort(function(a, b) {
+				if (a.name > b.name) {
+					return 1;
+				}
+				if (a.name < b.name) {
+					return -1;
+				}
 				return 0;
 			});
 
-
-
-
-
-			// console.error("Filter is", filter);
-			// console.error("group is", group);
-			// console.error("Target array", targetarray);
-
-
-			for(i = 0; i < targetarray.length; i++) {
-				if (filter !== null && !filter.hasOwnProperty(targetarray[i].mail)) {continue;}
+			for (i = 0; i < targetarray.length; i++) {
+				if (filter !== null && !filter.hasOwnProperty(targetarray[i].mail)) {
+					continue;
+				}
 				item = targetarray[i];
 				// console.error("About to process", item);
 				// console.log("row", this.getUserRow(item));
 				mv.append(this.getUserRow(item));
 			}
 
-
-
-			
 			if (this.showMeetingRoom()) {
 				var moreResources = [];
 				var r = this.freebusystore.getResources();
-				for(var j in r) {
+				for (var j in r) {
 					moreResources.push(r[j]);
 				}
 
 				mv.append('<tr><td colspan="30" style="text-align: center">Møterom</td></tr>');
 
-				for(i = 0; i < moreResources.length; i++) {
+				for (i = 0; i < moreResources.length; i++) {
 					item = moreResources[i];
 					mv.append(this.getUserRow(item));
 				}
 
 			}
-			
+
 
 		}
 

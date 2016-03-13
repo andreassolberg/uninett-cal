@@ -203,7 +203,7 @@ define(function(require, exports, module) {
 			};
 			var str = '';
 
-			console.log("Looking up ", type);
+			// console.log("Looking up ", type);
 			// 
 			for (var i = 0; i < matches[type].length; i++) {
 				str += '<div class="card-block ' + cmix[type] + '" style="padding: 3px">';

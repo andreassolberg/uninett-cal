@@ -9,69 +9,72 @@
 
 	<title>UNINETT Kalender</title>
 
-<!-- 	<link href="bower_components/uninett-theme/ico/favicon.png" rel="shortcut icon" /> -->
-
-
-
+	<!-- 	<link href="bower_components/uninett-theme/ico/favicon.png" rel="shortcut icon" /> -->
 
 	<!-- Application: Javascript and CSS loaded from developerment files -->
 	<link href="css/style.css" rel="stylesheet"/>
+	<script type="text/javascript" src="bower_components/tether/dist/js/tether.min.js"></script>
 	<script data-main="js/main" src="bower_components/requirejs/require.js"></script>
 	<!--  o __ o __ o __ o __ o __ o __ o __ o __ o __ o __ o __ o __ o -->
+
+
+
+
+
 
 </head>
 
 <body>
 
 
-<div class="container-fluid">
+	<div class="container-fluid">
 	
 
 
-	<div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">	
-	</div>
-
-	<div class=" " style="">
-
-		<div id="debug" style="font-size: 70%"></div>
-
-		<div id="errorcontainer"></div>
-		
-
-	</div>
-
-
-
-
-
-	<div id="allContent" class=" panefreebusy" style="margin-top: 70px">
-
-		<div id="mainOuterRow" class="row">
-
-			<div  id="groupselector" class="groupselector list-group col-sm-3"></div>
-			<div id="mainOuter" class="col-sm-9">
-
-				<ul id="mainNav" class="nav nav-inline" style="margin-bottom: 12px">
-					<li class="nav-item actPaneSelector" id="currentAvailability"><a class="nav-link" href="#"><i class="fa fa-clock-o"></i> Nå</a></li>
-					<li class="nav-item actPaneSelector" id="freebusy"><a class="nav-link" href="#"><i class="fa fa-calendar"></i> Planlegger</a></li>
-					<li class="nav-item actPaneSelector" id="vacation"><a class="nav-link" href="#"><i class="fa fa-plane"></i> Ferieoversikt</a></li>
-					<li class="nav-item actPaneSelector" id="uds"><a class="nav-link" href="#"><i class="fa fa-phone"></i> UDS</a></li>
-					<li class="nav-item actPaneSelector" id="contacts"><a class="nav-link"  href="#"><i class="fa fa-book"></i> Kontakter</a></li>
-					<li class="nav-item actPaneSelector" id="errors"><a class="nav-link" href="#"><i class="fa fa-warning"></i> Errors <span id="ec"></span></a></li>
-				</ul>
-
-
-
-				<div id="panecontainer"></div>
-
-
-			</div>
+		<div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">	
 		</div>
 
+		<div class=" " style="">
+
+			<div id="debug" style="font-size: 70%"></div>
+
+			<div id="errorcontainer"></div>
+			
+
+		</div>
+
+
+
+
+
+		<div id="allContent" class=" panefreebusy" style="margin-top: 70px">
+
+			<div id="mainOuterRow" class="row">
+
+				<div  id="groupselector" class="groupselector list-group col-sm-3"></div>
+				<div id="mainOuter" class="col-sm-9">
+
+					<ul id="mainNav" class="nav nav-inline" style="margin-bottom: 12px">
+						<li class="nav-item actPaneSelector" id="currentAvailability"><a class="nav-link" href="#"><i class="fa fa-clock-o"></i> Nå</a></li>
+						<li class="nav-item actPaneSelector" id="freebusy"><a class="nav-link" href="#"><i class="fa fa-calendar"></i> Planlegger</a></li>
+						<li class="nav-item actPaneSelector" id="vacation"><a class="nav-link" href="#"><i class="fa fa-plane"></i> Ferieoversikt</a></li>
+						<li class="nav-item actPaneSelector" id="uds"><a class="nav-link" href="#"><i class="fa fa-phone"></i> UDS</a></li>
+						<li class="nav-item actPaneSelector" id="contacts"><a class="nav-link"  href="#"><i class="fa fa-book"></i> Kontakter</a></li>
+						<li class="nav-item actPaneSelector" id="errors"><a class="nav-link" href="#"><i class="fa fa-warning"></i> Errors <span id="ec"></span></a></li>
+					</ul>
+
+
+
+					<div id="panecontainer"></div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+
 	</div>
-
-
-</div>
 	
 </body>
 </html>

@@ -14,8 +14,8 @@
 
 	<!-- Application: Javascript and CSS loaded from distribution build -->
 	<link href="dist/app.min.css" rel="stylesheet"/>
+	<script type="text/javascript" src="bower_components/tether/dist/js/tether.min.js"></script>
 	<script type="text/javascript">
-
 	</script> 
 
 	<script src="dist/app.min.js?v=2.2.5"></script>
@@ -25,58 +25,56 @@
 
 <body>
 
-	<div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">	
-	</div>
 
-	<div class=" " style="">
-
-		<div id="debug" style="font-size: 70%"></div>
-
-		<div id="errorcontainer"></div>
-		
-
-	</div>
+	<div class="container-fluid">
+	
 
 
+		<div id="header" class="navbar navbar-default navbar-fixed-top" role="navigation">	
+		</div>
 
+		<div class=" " style="">
 
+			<div id="debug" style="font-size: 70%"></div>
 
-<div id="allContent" class="container gutter panefreebusy">
-
-	<div id="mainOuterRow" class="row">
-
-		<div  id="groupselector" class="groupselector list-group col-sm-3"></div>
-		<div id="mainOuter" class="col-sm-9">
-
-			<ul id="mainNav" class="nav nav-pills" style="margin-bottom: 12px">
-				<li class="actPaneSelector" id="currentAvailability"><a href="#"><i class="fa fa-clock-o"></i> Nå</a></li>
-				<li class="actPaneSelector" id="freebusy"><a href="#"><i class="fa fa-calendar"></i> Planlegger</a></li>
-				<li class="actPaneSelector" id="vacation"><a href="#"><i class="fa fa-plane"></i> Ferieoversikt</a></li>
-				<li class="actPaneSelector" id="uds"><a href="#"><i class="fa fa-phone"></i> UDS</a></li>
-				<li class="actPaneSelector" id="contacts"><a  href="#"><i class="fa fa-book"></i> Kontakter</a></li>
-				<li class="actPaneSelector" id="errors"><a href="#"><i class="fa fa-warning"></i> Errors <span id="ec"></span></a></li>
-			</ul>
-
-
-
-			<div id="panecontainer"></div>
-
-
-<!--
-			<table class="table table-condensed" style="">
-				<thead class="mainheader" id="mainheader"></thead>
-				<tbody class="mainview" id="mainview"></tbody>
-			</table>
--->
-
+			<div id="errorcontainer"></div>
+			
 
 		</div>
+
+
+
+
+
+		<div id="allContent" class=" panefreebusy" style="margin-top: 70px">
+
+			<div id="mainOuterRow" class="row">
+
+				<div  id="groupselector" class="groupselector list-group col-sm-3"></div>
+				<div id="mainOuter" class="col-sm-9">
+
+					<ul id="mainNav" class="nav nav-inline" style="margin-bottom: 12px">
+						<li class="nav-item actPaneSelector" id="currentAvailability"><a class="nav-link" href="#"><i class="fa fa-clock-o"></i> Nå</a></li>
+						<li class="nav-item actPaneSelector" id="freebusy"><a class="nav-link" href="#"><i class="fa fa-calendar"></i> Planlegger</a></li>
+						<li class="nav-item actPaneSelector" id="vacation"><a class="nav-link" href="#"><i class="fa fa-plane"></i> Ferieoversikt</a></li>
+						<li class="nav-item actPaneSelector" id="uds"><a class="nav-link" href="#"><i class="fa fa-phone"></i> UDS</a></li>
+						<li class="nav-item actPaneSelector" id="contacts"><a class="nav-link"  href="#"><i class="fa fa-book"></i> Kontakter</a></li>
+						<li class="nav-item actPaneSelector" id="errors"><a class="nav-link" href="#"><i class="fa fa-warning"></i> Errors <span id="ec"></span></a></li>
+					</ul>
+
+
+
+					<div id="panecontainer"></div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+
 	</div>
-
-</div>
-
-
-
+	
 
 
 
