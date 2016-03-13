@@ -2,9 +2,9 @@
 set -e # halt script on error
 #app=$(jq -r .name nova.config.json)
 app=calendarapp
-hostnameapp=cal
+hostnameapp=_NA_
 oldapp="${app}-old"
-domain="uninett.no"
+domain="cal.uninett.no"
 
 echo "Ready to deploy updated version of ${hostnameapp}.${domain} (app ${app})"
 
@@ -29,11 +29,11 @@ else
     first='y'
 fi
 cf push "${app}" -k 384M -m 128M -i 1 -b https://github.com/cloudfoundry-community/staticfile-buildpack.git
-cf map-route "${app}" "${domain}" -n "${hostnameapp}"
+cf map-route "${app}" "${domain}"
 
 if [ "${first}" = 'n' ]
 then
-    cf unmap-route "${oldapp}" "${domain}" -n "${hostnameapp}"
+    cf unmap-route "${oldapp}" "${domain}" 
     cf stop "${oldapp}"
 fi
 
