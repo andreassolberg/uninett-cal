@@ -253,7 +253,7 @@ define(function(require, exports, module) {
 			// var str = '<div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">';
 			str += '<div class="card ' + cmix[currentStatus.status] + '">';
 			str += '<div class="card-block" style="padding-top: 3px; padding-bottom: 3px">' + this.getBigName(user.name) + '</div>';
-			str += '<img class="card-img img-fluid" src="https://cal.uninett.no/media/?mail=' + user.mail + '" />';
+			str += '<img class="card-img img-fluid" src="https://calendar-api.uninett.no/media/?mail=' + user.mail + '" />';
 
 
 			str += this.getCurrentEvents(currentStatus, "now");
