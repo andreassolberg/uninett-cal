@@ -260,7 +260,7 @@ define(function(require, exports, module) {
 
 		"getUserRow": function(user) {
 			var str = '<tr data-user="' + user.mail + '">' + 
-				'<td class="user">' + user.name + '</td>';
+				'<td class="user" style="width: 150px">' + user.name + '</td>';
 			
 			var week;
 
