@@ -36,7 +36,7 @@ define(function(require, exports, module) {
 		},
 		"getView": function() {
 			var txt = '<div class="media"><div class="media-left media-middle" style="padding-top: -4px">' +
-				'<img style="margin: 0px; max-width: 48px; max-height: 48px" class="media-object img-circle center-block" src="https://cal.uninett.no/media/?mail=' + this.userid +'" alt="..."></div>' +
+				'<img style="margin: 0px; max-width: 48px; max-height: 48px" class="media-object img-circle center-block" src="https://calendar-api.uninett.no/media/?mail=' + this.userid +'" alt="..."></div>' +
 				'<div class="media-body media-middle"><h4 style="margin: 0px">' + this.getDateStr() + '</h4><p>' + this.userid + '</p>' + 
 				'</div></div>';
 			return txt;
