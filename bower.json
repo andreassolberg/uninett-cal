@@ -26,6 +26,7 @@
     "moment-timezone": "*",
     "almond": "~0.3.0",
     "snapjs": "~1.9.3",
-    "tether": "^1.2.0"
+    "tether": "^1.2.0",
+    "es6-promise": "^3.2.1"
   }
 }

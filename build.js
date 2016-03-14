@@ -11,7 +11,8 @@
 		"momentl": "../bower_components/momentjs/locale/nb",
 		"momenttz": "../bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.min",
 		"matchHeight": "../bower_components/matchHeight/jquery.matchHeight-min",
-		"bootstrap": "../bower_components/bootstrap/dist/js/bootstrap"
+		"bootstrap": "../bower_components/bootstrap/dist/js/bootstrap",
+		"es6-promise": "../bower_components/es6-promise/promise"
 	},
 	shim: {
 		"dust": {

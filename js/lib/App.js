@@ -39,7 +39,9 @@ define(function(require, exports, module) {
 	var tmpFooter = require('text!templates/footer.html');
 
 	// require('tether');
+	require('es6-promise');
 	require('bootstrap');
+
 
 
 	/**
