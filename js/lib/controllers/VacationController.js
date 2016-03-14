@@ -98,7 +98,7 @@ define(function(require, exports, module) {
 			    }
 			};
 
-			// this.el.popover(popOverSettings);
+			this.el.popover(popOverSettings);
 		},
 
 		"setupPopover": function() {
@@ -140,7 +140,7 @@ define(function(require, exports, module) {
 			    }
 			};
 
-			// this.el.popover(popOverSettings);
+			this.el.popover(popOverSettings);
 		},
 
 
