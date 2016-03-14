@@ -6,4 +6,6 @@ Data storage is Exchange.
 
 Used by UNINETT AS.
 
+* <http://uninett.no>
+
 Andreas Åkre Solberg <andreas.solberg@uninett.no>
