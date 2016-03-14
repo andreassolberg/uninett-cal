@@ -37,14 +37,17 @@ define(function(require, exports, module) {
 
 		"loadData": function() {
 			var that = this;
-			return new Promise(function(resolve, reject) {
-				$.getJSON("https://cal.uninett.no/api-vakt-now/errors", function(data) {
+			return this.feideconnect._customRequest("https://uninett-cal.dataporten-api.no/api-vakt-now/errors")
+				.then(function(data) {
 					that.errors = data;
-
 					$("#ec").empty().append('<span class="label label-danger">' + data.length + '</span>');
-					resolve(data);
+					return data;
 				});
-			});
+			// return new Promise(function(resolve, reject) {
+			// 	$.getJSON("https://cal.uninett.no/api-vakt-now/errors", function(data) {
+			// 		resolve(data);
+			// 	});
+			// });
 		},
 		
 		"draw": function(act) {
